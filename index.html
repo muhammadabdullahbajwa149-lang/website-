@@ -1,0 +1,1181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUST | Discover Excellence</title>
+
+<style>
+:root {
+    --navy: #06172d;
+    --blue: #102d50;
+    --gold: #e8bb57;
+    --white: #fff;
+    --muted: #bdc9d8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--navy);
+    color: white;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+a { text-decoration: none; color: inherit; }
+
+button { font-family: inherit; }
+
+/* LOADER */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: #041226;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity .9s, visibility .9s;
+}
+
+.loader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content { text-align: center; }
+
+.loader-logo {
+    width: 180px;
+    height: 180px;
+    border: 3px solid var(--gold);
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: auto auto 25px;
+    animation: spin 3s linear infinite;
+    box-shadow: 0 0 35px #e8bb5744;
+}
+
+.loader-logo span {
+    font-size: 45px;
+    font-weight: 900;
+    color: var(--gold);
+    animation: counterspin 3s linear infinite;
+    letter-spacing: 5px;
+}
+
+.loader h1 {
+    font-size: clamp(25px,5vw,48px);
+    letter-spacing: 5px;
+    animation: appear 1.5s ease;
+}
+
+.loader p {
+    color: var(--gold);
+    letter-spacing: 5px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.loading-line {
+    width: 190px;
+    height: 3px;
+    background: #263b53;
+    margin: 25px auto;
+    overflow: hidden;
+}
+
+.loading-line::after {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 50%;
+    background: var(--gold);
+    animation: loading 1.5s infinite;
+}
+
+/* HEADER */
+header {
+    height: 85px;
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(4,18,38,.95);
+    border-bottom: 1px solid #e8bb5744;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(15px);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--gold);
+    font-size: 29px;
+    font-weight: 900;
+    letter-spacing: 3px;
+}
+
+.brand-mark {
+    width: 47px;
+    height: 47px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    animation: glow 2s infinite alternate;
+}
+
+.brand-mark span { font-size: 23px; }
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    font-size: 13px;
+    color: #e3e9f1;
+    transition: .3s;
+}
+
+nav a:hover { color: var(--gold); }
+
+.menu-btn {
+    display: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+    padding: 9px 12px;
+    cursor: pointer;
+}
+
+/* HERO */
+.hero {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    padding: 90px 9%;
+    position: relative;
+    background:
+    linear-gradient(90deg,rgba(2,13,29,.95),rgba(2,13,29,.35)),
+    url("https://upload.wikimedia.org/wikipedia/commons/7/7e/Nust.jpg")
+    center/cover no-repeat;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border: 1px solid #e8bb5744;
+    border-radius: 50%;
+    right: -100px;
+    bottom: -200px;
+    box-shadow: 0 0 0 50px #e8bb5708,
+                0 0 0 100px #e8bb5705;
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 2;
+    animation: slideUp 1.4s ease;
+}
+
+.eyebrow {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 12px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(45px,7vw,88px);
+    line-height: 1.08;
+    margin-bottom: 25px;
+}
+
+.hero h1 span { color: var(--gold); }
+
+.hero p {
+    color: #d5dfeb;
+    font-size: 17px;
+    line-height: 1.9;
+    max-width: 620px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 15px 25px;
+    border: 1px solid var(--gold);
+    background: var(--gold);
+    color: #07182e;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px #e8bb5755;
+}
+
+.btn-outline {
+    background: transparent;
+    color: white;
+}
+
+/* SECTION COMMON */
+section { padding: 95px 8%; }
+
+.section-head {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-head small {
+    color: var(--gold);
+    letter-spacing: 5px;
+    font-size: 11px;
+}
+
+.section-head h2 {
+    font-size: clamp(30px,4vw,46px);
+    margin-top: 13px;
+}
+
+.section-head p {
+    max-width: 650px;
+    margin: 17px auto 0;
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.gold { color: var(--gold); }
+
+/* INTRO STRIP */
+.intro-strip {
+    background: #0d2745;
+    padding: 28px 8%;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+    text-align: center;
+}
+
+.strip-item h3 {
+    color: var(--gold);
+    font-size: 28px;
+}
+
+.strip-item p {
+    color: #d3dce8;
+    margin-top: 7px;
+    font-size: 13px;
+}
+
+/* CARDS */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+.card {
+    background: #102a48;
+    border: 1px solid #e8bb572b;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: .45s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 15px 35px #0005;
+}
+
+.card-img {
+    height: 235px;
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform .7s;
+}
+
+.card:hover img { transform: scale(1.1); }
+
+.card-body { padding: 24px; }
+
+.card-body small {
+    color: var(--gold);
+    letter-spacing: 2px;
+}
+
+.card-body h3 {
+    margin: 12px 0;
+    font-size: 22px;
+}
+
+.card-body p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* ACTIVITIES */
+.activities { background: #081d36; }
+
+/* CAMPUS LIFE */
+.campus {
+    background: linear-gradient(120deg,#102d50,#07172c);
+}
+
+.campus-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 45px;
+    align-items: center;
+}
+
+.campus-image {
+    height: 480px;
+    border-radius: 15px;
+    overflow: hidden;
+    position: relative;
+}
+
+.campus-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .6s;
+}
+
+.campus-image:hover img { transform: scale(1.06); }
+
+.campus-text h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.campus-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 22px;
+}
+
+.feature {
+    display: flex;
+    gap: 16px;
+    margin: 20px 0;
+    align-items: center;
+}
+
+.feature-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    background: #e8bb5718;
+    border: 1px solid #e8bb5766;
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.feature h3 { font-size: 16px; margin-bottom: 5px; }
+.feature p { font-size: 13px; margin: 0; }
+
+/* ACHIEVEMENTS */
+.achievements {
+    background: #0d2745;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}
+
+.stat {
+    text-align: center;
+    padding: 35px 15px;
+    border: 1px solid #e8bb5744;
+    background: #102d50;
+    border-radius: 12px;
+    transition: .4s;
+}
+
+.stat:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px #e8bb5733;
+}
+
+.stat h3 {
+    font-size: 43px;
+    color: var(--gold);
+}
+
+.stat p {
+    margin-top: 12px;
+    color: var(--muted);
+}
+
+/* ACADEMICS */
+.academics { background: #07182e; }
+
+.academic-card {
+    padding: 30px;
+    min-height: 210px;
+    background: linear-gradient(145deg,#153b63,#0b203a);
+    border-radius: 12px;
+    border: 1px solid #e8bb5733;
+    transition: .4s;
+}
+
+.academic-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold);
+}
+
+.academic-card .icon {
+    font-size: 36px;
+    margin-bottom: 18px;
+}
+
+.academic-card h3 {
+    color: var(--gold);
+    margin-bottom: 12px;
+}
+
+.academic-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 14px;
+}
+
+/* RESEARCH */
+.research {
+    background: #102a48;
+}
+
+.research-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 35px;
+    align-items: center;
+}
+
+.research-grid img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.research-text h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.research-text p {
+    color: var(--muted);
+    line-height: 1.9;
+    margin-bottom: 25px;
+}
+
+/* GALLERY */
+.gallery { background: #06172d; }
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+}
+
+.gallery-item {
+    height: 260px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .6s;
+}
+
+.gallery-item:hover img { transform: scale(1.12); }
+
+.gallery-item span {
+    position: absolute;
+    inset: auto 0 0;
+    padding: 25px 15px 15px;
+    background: linear-gradient(transparent,#000d);
+    font-weight: bold;
+    color: white;
+}
+
+/* SOCIETIES */
+.society-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 13px;
+}
+
+.society {
+    padding: 14px 20px;
+    background: #143455;
+    border: 1px solid #e8bb5744;
+    border-radius: 30px;
+    transition: .3s;
+    color: #e9edf4;
+}
+
+.society:hover {
+    background: var(--gold);
+    color: #07182e;
+    transform: translateY(-4px);
+}
+
+/* QUOTE */
+.quote {
+    text-align: center;
+    background:
+    linear-gradient(#06172ddd,#06172ddd),
+    url("https://images.unsplash.com/photo-1562774053-701939374585?w=1600")
+    center/cover fixed;
+    padding: 100px 10%;
+}
+
+.quote h2 {
+    font-size: clamp(28px,4vw,48px);
+    line-height: 1.4;
+}
+
+.quote p {
+    color: var(--gold);
+    letter-spacing: 4px;
+    margin-top: 25px;
+}
+
+/* CONTACT */
+.contact {
+    text-align: center;
+    background: #102a48;
+}
+
+.contact p {
+    color: var(--muted);
+    margin: 15px;
+    line-height: 1.8;
+}
+
+/* FOOTER */
+footer {
+    padding: 55px 8% 25px;
+    background: #030d1c;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 35px;
+}
+
+footer h3 {
+    color: var(--gold);
+    margin-bottom: 17px;
+}
+
+footer p, footer a {
+    color: #b9c7d8;
+    line-height: 2;
+    font-size: 14px;
+}
+
+footer a { display: block; }
+footer a:hover { color: var(--gold); }
+
+.copyright {
+    border-top: 1px solid #ffffff22;
+    text-align: center;
+    padding-top: 20px;
+    color: #8999ad;
+    font-size: 13px;
+}
+
+/* SCROLL ANIMATIONS */
+.reveal {
+    opacity: 0;
+    transform: translateY(45px);
+    transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.back-top {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    width: 45px;
+    height: 45px;
+    background: var(--gold);
+    color: #06172d;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    z-index: 500;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s;
+}
+
+.back-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes counterspin { to { transform: rotate(-360deg); } }
+@keyframes glow {
+    from { box-shadow: 0 0 5px #e8bb57; }
+    to { box-shadow: 0 0 25px #e8bb57; }
+}
+@keyframes loading {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(200%); }
+}
+@keyframes appear {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* RESPONSIVE */
+@media(max-width:900px) {
+    .cards { grid-template-columns: repeat(2,1fr); }
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .intro-strip { grid-template-columns: repeat(2,1fr); }
+    .campus-grid, .research-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+}
+
+@media(max-width:700px) {
+    header { height: 72px; }
+    .menu-btn { display: block; }
+    nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: #06172d;
+        flex-direction: column;
+        padding: 25px;
+        gap: 22px;
+        border-bottom: 1px solid var(--gold);
+    }
+    nav.open { display: flex; }
+    .hero { min-height: 80vh; padding: 65px 7%; }
+    section { padding: 70px 6%; }
+    .cards { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item { height: 240px; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .campus-image { height: 300px; }
+    .research-grid img { height: 280px; }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ANIMATED WELCOME -->
+<div class="loader" id="loader">
+    <div class="loader-content">
+        <div class="loader-logo"><span>NUST</span></div>
+        <h1>WELCOME TO NUST</h1>
+        <p>LEARN • LEAD • INNOVATE</p>
+        <div class="loading-line"></div>
+        <p>DISCOVER YOUR FUTURE</p>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<header>
+    <a href="#home" class="brand">
+        <div class="brand-mark"><span>✦</span></div>
+        NUST
+    </a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰ MENU</button>
+
+    <nav id="navigation">
+        <a href="#home">Home</a>
+        <a href="#activities">Activities</a>
+        <a href="#campus">Campus Life</a>
+        <a href="#achievements">Achievements</a>
+        <a href="#academics">Academics</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HERO -->
+<main>
+<div class="hero" id="home">
+    <div class="hero-content">
+        <div class="eyebrow">NATIONAL UNIVERSITY OF SCIENCES AND TECHNOLOGY</div>
+        <h1>Discover Your <span>Future.</span><br>Shape Tomorrow.</h1>
+        <p>
+            Explore a world of knowledge, research, creativity and innovation.
+            Experience university life where ideas become possibilities.
+        </p>
+        <div class="hero-buttons">
+            <a href="#activities" class="btn">EXPLORE CAMPUS</a>
+            <a href="https://nust.edu.pk/" target="_blank" class="btn btn-outline">OFFICIAL WEBSITE ↗</a>
+        </div>
+    </div>
+</div>
+
+<!-- QUICK FACTS -->
+<div class="intro-strip">
+    <div class="strip-item">
+        <h3>80+</h3>
+        <p>Student Clubs & Societies</p>
+    </div>
+    <div class="strip-item">
+        <h3>450+</h3>
+        <p>Research Labs</p>
+    </div>
+    <div class="strip-item">
+        <h3>H-12</h3>
+        <p>Islamabad Campus</p>
+    </div>
+    <div class="strip-item">
+        <h3>Global</h3>
+        <p>Learning Community</p>
+    </div>
+</div>
+
+<!-- ACTIVITIES -->
+<section class="activities" id="activities">
+    <div class="section-head reveal">
+        <small>BEYOND THE CLASSROOM</small>
+        <h2>Life at <span class="gold">NUST</span></h2>
+        <p>University life is more than books. Discover activities, competitions and experiences that bring students together.</p>
+    </div>
+
+    <div class="cards">
+        <article class="card reveal">
+            <div class="card-img">
+                <img src="https://sa.nust.edu.pk/wp-content/uploads/2026/08/B1Ol-26-30.jpg" alt="NUST Olympiad event" loading="lazy">
+            </div>
+            <div class="card-body">
+                <small>STUDENT EVENTS</small>
+                <h3>NUST Olympiad</h3>
+                <p>A platform for competitions, creativity, teamwork and student talent across different disciplines.</p>
+            </div>
+        </article>
+
+        <article class="card reveal">
+            <div class="card-img">
+                <img src="https://igis.nust.edu.pk/wp-content/uploads/2025/04/657efe35-15ec-4096-9735-520a6c658f00-scaled.jpeg" alt="Sports activities" loading="lazy">
+            </div>
+            <div class="card-body">
+                <small>SPORTS</small>
+                <h3>Sports & Fitness</h3>
+                <p>Sports and recreational opportunities encourage teamwork, confidence and an active campus community.</p>
+            </div>
+        </article>
+
+        <article class="card reveal">
+            <div class="card-img">
+                <img src="https://sa.nust.edu.pk/wp-content/uploads/2025/09/Lapel-Pin-2024-25-1.jpg" alt="NUST award ceremony" loading="lazy">
+            </div>
+            <div class="card-body">
+                <small>RECOGNITION</small>
+                <h3>Student Awards</h3>
+                <p>Celebrating dedication, academic achievements and contributions by students.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- CAMPUS LIFE -->
+<section class="campus" id="campus">
+    <div class="campus-grid">
+        <div class="campus-image reveal">
+            <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1000" alt="University campus buildings" loading="lazy">
+        </div>
+
+        <div class="campus-text reveal">
+            <div class="eyebrow">EXPLORE THE EXPERIENCE</div>
+            <h2>More Than Just a <span class="gold">University</span></h2>
+            <p>
+                Discover an environment where students can learn, collaborate,
+                explore their interests and develop skills outside the classroom.
+            </p>
+
+            <div class="feature">
+                <div class="feature-icon">🏛️</div>
+                <div>
+                    <h3>Campus Community</h3>
+                    <p>Meet people, exchange ideas and build friendships.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🏃</div>
+                <div>
+                    <h3>Sports & Recreation</h3>
+                    <p>Enjoy a variety of sports and recreational facilities.</p>
+                </div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎭</div>
+                <div>
+                    <h3>Creative Activities</h3>
+                    <p>Explore arts, music, media and cultural experiences.</p>
+                </div>
+            </div>
+
+            <a href="https://campuslife.nust.edu.pk/" target="_blank" class="btn">EXPLORE CAMPUS LIFE ↗</a>
+        </div>
+    </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section class="achievements" id="achievements">
+    <div class="section-head reveal">
+        <small>PROGRESS THROUGH KNOWLEDGE</small>
+        <h2>NUST <span class="gold">Achievements</span></h2>
+        <p>A growing academic and research community focused on innovation and impact.</p>
+    </div>
+
+    <div class="stats">
+        <div class="stat reveal">
+            <h3 class="counter" data-target="80">0</h3>
+            <p>Student Clubs & Societies</p>
+        </div>
+        <div class="stat reveal">
+            <h3 class="counter" data-target="450">0</h3>
+            <p>Research Labs</p>
+        </div>
+        <div class="stat reveal">
+            <h3 class="counter" data-target="40">0</h3>
+            <p>Undergraduate Programmes*</p>
+        </div>
+        <div class="stat reveal">
+            <h3 class="counter" data-target="1600">0</h3>
+            <p>Research Projects*</p>
+        </div>
+    </div>
+    <p style="text-align:center;color:#aebed0;font-size:12px;margin-top:22px;">
+        *Figures shown as approximate or previously reported indicators; check NUST's official website for current details.
+    </p>
+</section>
+
+<!-- ACADEMICS -->
+<section class="academics" id="academics">
+    <div class="section-head reveal">
+        <small>KNOWLEDGE & DISCOVERY</small>
+        <h2>Explore Our <span class="gold">Academic Fields</span></h2>
+        <p>Discover a range of disciplines and areas of study offered across NUST institutions.</p>
+    </div>
+
+    <div class="cards">
+        <div class="academic-card reveal">
+            <div class="icon">⚙️</div>
+            <h3>Engineering</h3>
+            <p>Explore engineering disciplines, design, technology and practical problem-solving.</p>
+        </div>
+        <div class="academic-card reveal">
+            <div class="icon">💻</div>
+            <h3>Computing & IT</h3>
+            <p>Discover computer science, software, artificial intelligence and digital systems.</p>
+        </div>
+        <div class="academic-card reveal">
+            <div class="icon">🧬</div>
+            <h3>Natural Sciences</h3>
+            <p>Learn about scientific discovery, biology, chemistry and physical sciences.</p>
+        </div>
+        <div class="academic-card reveal">
+            <div class="icon">📐</div>
+            <h3>Architecture</h3>
+            <p>Explore creative design, built environments and sustainable planning.</p>
+        </div>
+        <div class="academic-card reveal">
+            <div class="icon">📊</div>
+            <h3>Business Studies</h3>
+            <p>Develop knowledge in management, entrepreneurship and business strategy.</p>
+        </div>
+        <div class="academic-card reveal">
+            <div class="icon">🌍</div>
+            <h3>Social Sciences</h3>
+            <p>Understand society, communication, policy and human development.</p>
+        </div>
+    </div>
+</section>
+
+<!-- RESEARCH -->
+<section class="research">
+    <div class="research-grid">
+        <div class="research-text reveal">
+            <div class="eyebrow">IDEAS INTO IMPACT</div>
+            <h2>Research & <span class="gold">Innovation</span></h2>
+            <p>
+                Research helps address real-world challenges. Explore how
+                science, technology, engineering and creative thinking
+                contribute to new discoveries and solutions.
+            </p>
+            <a href="https://nust.edu.pk/research/" target="_blank" class="btn">DISCOVER RESEARCH ↗</a>
+        </div>
+        <img class="reveal" src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?w=1100" alt="Science research laboratory" loading="lazy">
+    </div>
+</section>
+
+<!-- STUDENT SOCIETIES -->
+<section>
+    <div class="section-head reveal">
+        <small>FIND YOUR COMMUNITY</small>
+        <h2>Clubs & <span class="gold">Societies</span></h2>
+        <p>Students can explore interests and build skills through different communities and activities.</p>
+    </div>
+
+    <div class="society-list reveal">
+        <div class="society">🔬 Science Society</div>
+        <div class="society">🎨 Fine Arts Club</div>
+        <div class="society">🎬 Media Club</div>
+        <div class="society">📚 Literary Circle</div>
+        <div class="society">🎵 Music Society</div>
+        <div class="society">🤖 Robotics Club</div>
+        <div class="society">🌱 Environment Club</div>
+        <div class="society">💡 Entrepreneurs Club</div>
+        <div class="society">🥾 Adventure Club</div>
+        <div class="society">🤝 Community Service Club</div>
+    </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery" id="gallery">
+    <div class="section-head reveal">
+        <small>MEMORIES & MOMENTS</small>
+        <h2>Campus <span class="gold">Gallery</span></h2>
+        <p>A collection of campus, learning, student events and university-life images.</p>
+    </div>
+
+    <div class="gallery-grid">
+        <div class="gallery-item reveal">
+            <img src="https://sa.nust.edu.pk/wp-content/uploads/2025/09/Lapel-Pin-2024-25-1.jpg" alt="Student recognition event" loading="lazy">
+            <span>Student Recognition</span>
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://sa.nust.edu.pk/wp-content/uploads/2026/08/COl-26-29.jpg" alt="NUST event" loading="lazy">
+            <span>University Events</span>
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=900" alt="Students at university" loading="lazy">
+            <span>Student Community</span>
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=900" alt="University graduation" loading="lazy">
+            <span>Graduation</span>
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=900" alt="Technology and learning" loading="lazy">
+            <span>Technology & Learning</span>
+        </div>
+        <div class="gallery-item reveal">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=900" alt="Student gathering" loading="lazy">
+            <span>Campus Connections</span>
+        </div>
+    </div>
+</section>
+
+<!-- QUOTE -->
+<div class="quote">
+    <h2 class="reveal">"Education is the foundation of innovation, leadership and a brighter future."</h2>
+    <p>LEARN • LEAD • INNOVATE</p>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+    <div class="section-head reveal">
+        <small>GET CONNECTED</small>
+        <h2>Discover <span class="gold">NUST</span></h2>
+        <p>Find official university information, programmes, admissions and campus updates.</p>
+    </div>
+    <p><strong>Location:</strong> H-12, Islamabad, Pakistan</p>
+    <p><strong>UAN:</strong> +92-51-111-11-6878</p>
+    <a href="https://nust.edu.pk/" target="_blank" class="btn">VISIT OFFICIAL NUST WEBSITE ↗</a>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div>
+            <h3>NUST</h3>
+            <p>A student-created university website concept celebrating education, research, student activities and innovation.</p>
+        </div>
+        <div>
+            <h3>Explore</h3>
+            <a href="#activities">Student Activities</a>
+            <a href="#campus">Campus Life</a>
+            <a href="#academics">Academics</a>
+            <a href="#gallery">Gallery</a>
+        </div>
+        <div>
+            <h3>Official Links</h3>
+            <a href="https://nust.edu.pk/" target="_blank">NUST Website ↗</a>
+            <a href="https://campuslife.nust.edu.pk/" target="_blank">Campus Life ↗</a>
+            <a href="https://sa.nust.edu.pk/" target="_blank">Student Affairs ↗</a>
+        </div>
+    </div>
+    <div class="copyright">
+        © 2026 NUST Website Project | Created for educational purposes
+    </div>
+</footer>
+
+<button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+<script>
+// WELCOME SCREEN
+window.addEventListener("load", function() {
+    setTimeout(function() {
+        document.getElementById("loader").classList.add("hide");
+    }, 2500);
+});
+
+// MOBILE MENU
+const menuBtn = document.getElementById("menuBtn");
+const navigation = document.getElementById("navigation");
+
+menuBtn.addEventListener("click", function() {
+    navigation.classList.toggle("open");
+    menuBtn.textContent = navigation.classList.contains("open")
+        ? "✕ CLOSE" : "☰ MENU";
+});
+
+document.querySelectorAll("nav a").forEach(function(link) {
+    link.addEventListener("click", function() {
+        navigation.classList.remove("open");
+        menuBtn.textContent = "☰ MENU";
+    });
+});
+
+// SCROLL REVEAL
+const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if(entry.isIntersecting) {
+            entry.target.classList.add("show");
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(function(element) {
+    observer.observe(element);
+});
+
+// ANIMATED NUMBER COUNTERS
+const counterObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+        if(entry.isIntersecting) {
+            const counter = entry.target;
+            const target = Number(counter.dataset.target);
+            let current = 0;
+            const increment = Math.max(1, Math.ceil(target / 70));
+
+            const timer = setInterval(function() {
+                current += increment;
+
+                if(current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+
+                counter.textContent = current.toLocaleString() +
+                    (target === 40 ? "+" : "+");
+            }, 25);
+
+            counterObserver.unobserve(counter);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll(".counter").forEach(function(counter) {
+    counterObserver.observe(counter);
+});
+
+// BACK TO TOP
+const backTop = document.getElementById("backTop");
+
+window.addEventListener("scroll", function() {
+    if(window.scrollY > 450) {
+        backTop.classList.add("visible");
+    } else {
+        backTop.classList.remove("visible");
+    }
+});
+
+backTop.addEventListener("click", function() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+});
+</script>
+
+</body>
+</html>
